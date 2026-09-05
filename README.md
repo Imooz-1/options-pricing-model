@@ -1,4 +1,4 @@
-# Options Pricing — Black-Scholes, Monte Carlo & couverture delta
+# Options Pricing : Black-Scholes, Monte Carlo et couverture delta
 
 Projet perso pour appliquer et mettre en pratique les bases du pricing d'options : formule de Black-Scholes, pricing par simulation Monte Carlo (avec une technique de réduction de variance), calcul des Greeks, et une simulation de couverture delta pour voir concrètement ce que ça donne quand on rebalance à intervalles discrets plutôt qu'en continu.
 
@@ -27,7 +27,7 @@ options-pricing/
 
 **Monte Carlo** : je simule directement le prix terminal du sous-jacent (solution exacte du mouvement brownien géométrique, donc pas de biais de discrétisation), et je compare deux estimateurs : Monte Carlo naïf, et Monte Carlo avec variables antithétiques (pour chaque tirage Z, on utilise aussi -Z, ce qui réduit la variance sans biaiser le résultat).
 
-**Couverture delta** : je simule un trader qui vend une option, encaisse la prime Black-Scholes, et couvre en détenant `delta` actions du sous-jacent, rebalancées à intervalles réguliers (hebdomadaire par défaut). En théorie continue cette réplication est parfaite. En pratique, avec un rebalancement discret, il reste une erreur résiduelle — c'est ce que je mesure ici.
+**Couverture delta** : je simule un trader qui vend une option, encaisse la prime Black-Scholes, et couvre en détenant `delta` actions du sous-jacent, rebalancées à intervalles réguliers (hebdomadaire par défaut). En théorie continue cette réplication est parfaite. En pratique, avec un rebalancement discret, il reste une erreur résiduelle : c'est ce que je mesure ici.
 
 ## Résultats
 
@@ -54,7 +54,7 @@ Le PnL moyen est proche de zéro (couverture non biaisée), mais l'écart-type m
 
 ![Erreur vs fréquence](plots/hedging_error_vs_frequency.png)
 
-Logique : plus on rebalance souvent, plus l'écart-type du PnL diminue (au prix, en pratique, de coûts de transaction plus élevés — pas modélisés ici).
+Logique : plus on rebalance souvent, plus l'écart-type du PnL diminue (au prix, en pratique, de coûts de transaction plus élevés et pas modélisés ici).
 
 ## Pour lancer le projet
 
@@ -80,6 +80,6 @@ mc_estimate, std_error = mc_price(S=100, K=100, T=1.0, r=0.03, sigma=0.2,
 
 ## Limites / pistes d'amélioration
 
-- Volatilité constante (pas de smile) — un modèle Heston ou local vol serait la suite logique
+- Volatilité constante (pas de smile) : un modèle Heston ou local vol serait la suite logique
 - Pas de coûts de transaction dans la simulation de couverture
-- Options européennes seulement (pas d'exercice anticipé)
+- Options européennes seulement 
