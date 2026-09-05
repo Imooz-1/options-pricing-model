@@ -1,9 +1,5 @@
-"""
-Entry point: runs the sanity checks for each module and regenerates every
-figure used in the README. Run with:
-
-    python run_all.py
-"""
+# lance tout le projet d'un coup : tests des 3 modules + regeneration des graphes
+# usage : python run_all.py
 
 import subprocess
 import sys
@@ -14,5 +10,5 @@ SRC = os.path.join(os.path.dirname(__file__), "src")
 scripts = ["black_scholes.py", "monte_carlo.py", "hedging.py", "generate_plots.py"]
 
 for script in scripts:
-    print(f"\n{'=' * 60}\nRunning {script}\n{'=' * 60}")
+    print(f"\n--- {script} ---")
     subprocess.run([sys.executable, script], cwd=SRC, check=True)
